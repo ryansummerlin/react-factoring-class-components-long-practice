@@ -8,9 +8,9 @@ class Weather extends React.Component {
         weather: null
       };
     }
-    
+
     componentDidMount() {
-      navigator.geolocation?.getCurrentPosition(
+      navigator.geolocation.getCurrentPosition(
         this.pollWeather,
         (err) => console.log(err),
         { timeout: 10000 }
@@ -36,7 +36,7 @@ class Weather extends React.Component {
         lon: location.coords.longitude,
         appid: apiKey
       };
-      
+
       url += toQueryString(params);
 
       const res = await fetch(url);
@@ -52,7 +52,7 @@ class Weather extends React.Component {
   render() {
     const weather = this.state.weather;
     let content = <div className='loading'>loading weather...</div>;
-    
+
     if (weather) {
       const temp = (weather.main.temp - 273.15) * 1.8 + 32;
       content = (
@@ -65,7 +65,7 @@ class Weather extends React.Component {
     else {
       content = (
         <div>
-          Weather is currently unavailable. (Are Location Services enabled?) 
+          Weather is currently unavailable. (Are Location Services enabled?)
         </div>
       )
     }
